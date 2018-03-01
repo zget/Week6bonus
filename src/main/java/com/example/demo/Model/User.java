@@ -6,6 +6,7 @@ import com.example.demo.Model.Role;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -30,7 +31,8 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
 
-
+        @OneToMany(mappedBy = "auser")
+        private Set<Item> items;
 
     public User(String email, String password, String firstName, String lastName, boolean enabled, String userName) {
         this.email = email;
@@ -40,6 +42,7 @@ public class User {
         this.enabled = enabled;
         this.userName = userName;
         this.roles= new HashSet<Role>();
+        this.items= new HashSet<Item>();
 
     }
 
@@ -47,7 +50,7 @@ public class User {
 
     public User() {
         this.roles= new HashSet<Role>();
-
+        this.items= new HashSet<Item>();
     }
 
 
@@ -116,8 +119,16 @@ public class User {
         this.roles = roles;
     }
 
+    public Set<Item> getItems() { return items;  }
+
+    public void setItems(Set<Item> items) {  this.items = items; }
+
     public void addRole(Role r){
         this.roles.add(r);
     }
+
+//    public void additem(Item i){
+//        this.items.add(i);
+//    }
 
 }

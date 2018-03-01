@@ -30,7 +30,7 @@ public class SecurityConfigeration extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers("/","/login","/h2-console/**","/register").permitAll()
+                .antMatchers("/listall","/login","/h2-console/**","/register").permitAll()
                .antMatchers().access("hasAuthority('USER')")
 
                 .antMatchers().access("hasAuthority('ADMIN') ")
@@ -39,7 +39,7 @@ public class SecurityConfigeration extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .formLogin().loginPage("/login").defaultSuccessUrl("/home")
+                .formLogin().loginPage("/login").defaultSuccessUrl("/listmy")
                 .loginProcessingUrl("/loginprocess")
                 .permitAll()
 
