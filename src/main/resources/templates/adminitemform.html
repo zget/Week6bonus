@@ -50,7 +50,7 @@
         <div class="form-group">
             <label>Select User To Post For</label>
         <select th:object="${regUsers}"/>
-        <option th:each="user : ${regUsers}" ></option>
+        <option th:each="user : ${regUsers}" th:inline="text">[[${user.getFirstName()}]]</option>
         </div><br/><br/>
         <div>
         <input type="submit" value="Submit" />
