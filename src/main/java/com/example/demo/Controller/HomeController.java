@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Model.Item;
+import com.example.demo.Model.Role;
 import com.example.demo.Model.User;
 import com.example.demo.Repositories.ItemRepository;
 import com.example.demo.Repositories.RoleRepository;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.HashSet;
 
 @Controller
 public class HomeController {
@@ -49,8 +51,28 @@ public class HomeController {
     }
 
     @RequestMapping("/list")
-    public  String listAll(Model model){
-        model.addAttribute("items",itemRepository.findAll());
+    public  String listAll(Model model, Authentication auth){
+
+        try {
+            Iterable<Item> selectedItem= new HashSet<>();
+            Collection<Role> myroles = (userRepository.findByUserName
+                    (auth.getName())).getRoles();
+            for (Role role : myroles) {
+                if (role.getRolename().equalsIgnoreCase("Admin")) {
+                    selectedItem = itemRepository.findAll();
+                    break;
+
+                } else
+                    selectedItem = itemRepository.findAllByStatus("LOST");
+            }
+
+
+            model.addAttribute("items", selectedItem);
+        }
+        catch(NullPointerException e){model.addAttribute("items",
+                itemRepository.findAllByStatus("LOST"));}
+
+
         return "listall";
     }
 
@@ -73,7 +95,7 @@ public class HomeController {
     @RequestMapping("/")
     public  String listPage(){
 
-        return "redirect:/listall";
+        return "redirect:/list";
     }
 
 

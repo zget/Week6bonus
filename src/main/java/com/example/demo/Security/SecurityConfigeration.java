@@ -10,6 +10,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import static org.hibernate.criterion.Restrictions.and;
 
 @Configuration
 @EnableWebSecurity
@@ -30,16 +33,13 @@ public class SecurityConfigeration extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers("/listall","/login","/h2-console/**","/register").permitAll();
-//               .antMatchers().access("hasAuthority('USER')")
-//
-//                .antMatchers().access("hasAuthority('ADMIN') ")
-
-        http
-                .authorizeRequests()
-
-
-
+                .antMatchers("/list","/","/login","/h2-console/**",
+                       "/static/css/hcss.css","/css**","/js**","/static/css/tcss.css",
+                        "/register","/home","/login","/css/hcss.css","/css/tcss.css").permitAll()
+                .antMatchers("/itemform","/listmy")
+                .access("hasAnyAuthority('USER', 'ADMIN')")
+                .antMatchers("/update/item/{id}","/postforregistereduser")
+                .access("hasAuthority('ADMIN') ")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -48,9 +48,9 @@ public class SecurityConfigeration extends WebSecurityConfigurerAdapter {
                 .permitAll()
 
                 .and()
-//                .logout().logoutRequestMatcher(
-//                        new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll()
-                .logout().permitAll()
+                .logout().logoutRequestMatcher(
+                        new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll()
+//                .logout().permitAll()
                 .and()
                 .exceptionHandling().accessDeniedPage("/access-denied")
                 .and()
