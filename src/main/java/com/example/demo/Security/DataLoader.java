@@ -44,9 +44,16 @@ public class DataLoader implements CommandLineRunner {
         user1.addRole(myRole);
         userRepository.save(user2);
 
-        Item item=new Item("www.google.com","dog","Pets","fluffy");
+        Item item=new Item("https://www.cats.org.uk/uploads/images/featurebox_sidebar_kids/grief-and-loss.jpg",
+                "cat","Pets","fluffy");
         itemRepository.save(item);
         item.setAuser(user1);
+        itemRepository.save(item);
+
+        item=new Item("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEF0Z0-VDJyNDeQUkwnAHorE9DYof05cuZnSfMBHo8VebrQxu_ew",
+                "jacket","Pets","fluffy");
+        itemRepository.save(item);
+        item.setAuser(user2);
         itemRepository.save(item);
 //        user1.additem(item);
 //        userRepository.save(user1);

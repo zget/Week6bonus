@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
@@ -35,18 +35,23 @@
         <th class="text-left">Description</th>
         <th class="text-left">Owner</th>
         <th class="text-left">Status</th>
+        <th:block sec:authorize="hasAuthority('ADMIN')">
+        <th class="text-left">Action</th>
+        </th:block>
     </tr>
     </thead>
     <tbody class="table-hover">
     <tr th:inline="text" th:each="item : ${items}">
-        <td class="text-left">[[${item.image}]]</td>
+        <td class="text-left"> <img th:src="${item.image}" width="150" height="150"/></td>
         <td class="text-left">[[${item.title}]]</td>
         <td class="text-left">[[${item.category}]]</td>
         <td class="text-left">[[${item.description}]]</td>
         <td class="text-left">[[${item.auser.getFirstName()}]]</td>
-        <th:block sec="isAuthenticated()">
         <td class="text-left">[[${item.getStatus()}]]</td>
+        <th:block sec:authorize="hasAuthority('ADMIN')">
+            <td class="text-left"><a th:href="@{/update/item/{id}(id=${item.id})}">edit status</a></td>
         </th:block>
+
     </tr>
 
     </tbody>

@@ -30,10 +30,14 @@ public class SecurityConfigeration extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers("/listall","/login","/h2-console/**","/register").permitAll()
-               .antMatchers().access("hasAuthority('USER')")
+                .antMatchers("/listall","/login","/h2-console/**","/register").permitAll();
+//               .antMatchers().access("hasAuthority('USER')")
+//
+//                .antMatchers().access("hasAuthority('ADMIN') ")
 
-                .antMatchers().access("hasAuthority('ADMIN') ")
+        http
+                .authorizeRequests()
+
 
 
                 .anyRequest()

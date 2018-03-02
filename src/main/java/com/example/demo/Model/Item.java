@@ -1,5 +1,7 @@
 package com.example.demo.Model;
 
+import org.hibernate.validator.constraints.URL;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,7 +12,6 @@ public class Item {
     private long id;
 
     private String image;
-
     private String title;
     private String category;
     private String description;

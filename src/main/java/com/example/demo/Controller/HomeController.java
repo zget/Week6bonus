@@ -120,6 +120,29 @@ public class HomeController {
         return "redirect:/login";
     }
 
+    @RequestMapping("/update/item/{id}")
+    public String updateItem(@PathVariable("id") long id){
+
+        Item myitem=itemRepository.findOne(id);
+        if(myitem.getStatus().equalsIgnoreCase("LOST"))
+            myitem.setStatus("FOUND");
+        else
+            myitem.setStatus("LOST");
+        itemRepository.save(myitem);
+
+      return "redirect:/list";
+
+    }
+
+    @GetMapping("/postforregistereduser")
+    public String postForregisteredUser(Model model){
+
+      Iterable<User> registeredUsers=userRepository.findAll();
+      model.addAttribute("item", new Item());
+      model.addAttribute("regUsers",registeredUsers);
+      return "adminitemform";
+    }
+
 
 
 }
