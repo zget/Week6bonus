@@ -211,6 +211,12 @@ public class HomeController {
         return "how r u";
     }
 
-
+    @PostMapping("/searchitem")
+    public String showSearchResults(HttpServletRequest request, Model model){
+        String query = request.getParameter("search");
+        model.addAttribute("search", query);
+        model.addAttribute("searchitems", itemRepository.findByCategoryContainingIgnoreCase(query));
+        return "Searchresult";
+    }
 
 }

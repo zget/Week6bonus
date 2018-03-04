@@ -35,7 +35,8 @@ public class SecurityConfigeration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/list","/","/login","/h2-console/**",
                        "/static/css/hcss.css","/css**","/js**","/static/css/tcss.css",
-                        "/register","/home","/login","/css/hcss.css","/css/tcss.css").permitAll()
+                        "/register","/home","/login","/css/hcss.css","/css/tcss.css"
+                ,"/css/sercss.css","/../static/css/sercss.css","/searchitem").permitAll()
                 .antMatchers("/itemform","/listmy")
                 .access("hasAnyAuthority('USER', 'ADMIN')")
                 .antMatchers("/update/item/{id}","/postforregistereduser")

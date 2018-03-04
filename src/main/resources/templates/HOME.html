@@ -10,6 +10,8 @@
     <link rel="Stylesheet" href='https://fonts.googleapis.com/css?family=Muli' type='text/css'>
     <link rel="stylesheet" href="/css/hcss.css">
     <link rel="stylesheet" href="/../static/css/hcss.css">
+    <link rel="stylesheet" href="/../static/css/sercss.css">
+    <link rel="stylesheet" href="/css/sercss.css">
 
 
 </head>
@@ -24,8 +26,20 @@
         <li><a href="/register">SignUp</a></li>
         <li><a href="/logout">logout</a></li>
         <li><a href="/postforregistereduser">post for</a></li>
-
-
+        <li><form th:action="@{/searchitem}" th:object="${item}" method="post">
+            <input type="search" name="search" placeholder="search by category..."/>
+        </form>
+        </li>
+        <li>
+        <!--<div class="box">-->
+            <!--<div class="container-1">-->
+                <!--<form th:action="@{/searchitem}" th:object="${item}" method="post">-->
+                <!--<span class="icon"><i class="fa fa-search"></i></span>-->
+                <!--<input type="search" name="search" placeholder="Search..." />-->
+                <!--</form>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--</li>-->
     </ul>
 </nav>
 </div>
