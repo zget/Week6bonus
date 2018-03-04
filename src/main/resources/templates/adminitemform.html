@@ -15,7 +15,7 @@
 <body>
 <div th:replace="HOME :: mynav"></div>
 
-<form class="container" action="#" th:action="@{/itemform}" th:object="${item}" method="post">
+<form class="container" action="#" th:action="@{/postforregistereduser}" th:object="${newitem}" method="post">
 
     <div class="form-group">
         <input type="hidden" th:field="*{id}" />
@@ -47,10 +47,14 @@
             </select>
         </div>
 
+
+
         <div class="form-group">
             <label>Select User To Post For</label>
-        <select th:object="${regUsers}"/>
-        <option th:each="user : ${regUsers}" th:inline="text">[[${user.getFirstName()}]]</option>
+        <select  name="username">
+        <option th:each="user : ${regUsers}" th:value="${user.userName}"
+                th:text="${user.firstName}"></option>
+        </select>
         </div><br/><br/>
         <div>
         <input type="submit" value="Submit" />

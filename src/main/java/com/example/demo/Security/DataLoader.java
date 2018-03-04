@@ -41,7 +41,7 @@ public class DataLoader implements CommandLineRunner {
         User user2= new User("d@d.com", "password", "RODAS",
                 "ASFAW",true, "user");
          myRole= roleRepository.findByRolename("USER");
-        user1.addRole(myRole);
+        user2.addRole(myRole);
         userRepository.save(user2);
 
         Item item=new Item("https://www.cats.org.uk/uploads/images/featurebox_sidebar_kids/grief-and-loss.jpg",

@@ -18,7 +18,7 @@ public class Item {
     private String status="Lost";
 
 
-    @ManyToOne
+    @ManyToOne()
     private User auser;
 
     public Item() {
@@ -89,4 +89,6 @@ public class Item {
     public void setAuser(User auser) {
         this.auser = auser;
     }
+
+
 }

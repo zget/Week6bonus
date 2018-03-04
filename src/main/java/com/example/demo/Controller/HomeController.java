@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.HashSet;
@@ -41,14 +42,26 @@ public class HomeController {
         if (result.hasErrors())
             return "itemform";
 
+
         User currentuser= userRepository.findByUserName(auth.getName());
         userRepository.save(currentuser);
+        if(item .getImage().isEmpty()) {
+            if (item.getCategory().equalsIgnoreCase("Pets"))
+                item.setImage("https://static.pexels.com/photos/59523/pexels-photo-59523.jpeg");
+            else if (item.getCategory().equalsIgnoreCase("Cloth"))
+                item.setImage("https://www.homeleisuredirect.com/Assets/HLD/User/13_Cloth%20Options.jpg");
+            else
+                item.setImage("https://pisces.bbystatic.com/image2/BestBuy_US/store/ee/2017/mob/flx/flx_0329_sol12145-plus.jpg;maxHeight=333;maxWidth=333");
+        }
+
+
         item.setAuser(currentuser);
         itemRepository.save(item);
 
-        model.addAttribute("item", itemRepository);
+        model.addAttribute("item", itemRepository.findAll());
         return "redirect:/home";
     }
+
 
     @RequestMapping("/list")
     public  String listAll(Model model, Authentication auth){
@@ -80,7 +93,8 @@ public class HomeController {
     @RequestMapping("/listmy")
     public String applicantResume(Model model, Authentication auth) {
 
-        Iterable<Item> myitems=itemRepository.findByAuser(userRepository.findByUserName(auth.getName()));
+        Iterable<Item> myitems=itemRepository.findByAuser(userRepository.
+                findByUserName(auth.getName()));
 
         model.addAttribute("items", myitems);
 
@@ -159,10 +173,31 @@ public class HomeController {
     @GetMapping("/postforregistereduser")
     public String postForregisteredUser(Model model){
 
-      Iterable<User> registeredUsers=userRepository.findAll();
-      model.addAttribute("item", new Item());
-      model.addAttribute("regUsers",registeredUsers);
+        model.addAttribute("newitem", new Item());
+      model.addAttribute("regUsers",userRepository.findAll());
       return "adminitemform";
+    }
+
+    @PostMapping("/postforregistereduser")
+    public String processAdminItemForm(@Valid @ModelAttribute("newitem") Item item,
+                                       BindingResult result, Model model,
+                                       HttpServletRequest request){
+  if (result.hasErrors())
+            return "adminitemform";
+
+
+        User selectedUser=userRepository.findByUserName(request.getParameter("username"));
+        item.setAuser(selectedUser);
+        itemRepository.save(item);
+
+        model.addAttribute("item", itemRepository.findAll());
+        return "redirect:/home";
+    }
+
+    @RequestMapping("/postforregistereduser")
+    public String test(HttpServletRequest request){
+        System.out.println(request.getParameter("username"));
+        return "how r u";
     }
 
 

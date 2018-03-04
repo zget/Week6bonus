@@ -127,8 +127,8 @@ public class User {
         this.roles.add(r);
     }
 
-//    public void additem(Item i){
-//        this.items.add(i);
-//    }
+  public void additem(Item i){
+     this.items.add(i);
+  }
 
 }
