@@ -3,6 +3,7 @@ package com.example.demo.Model;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Item {
@@ -10,8 +11,9 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @NotNull
+    private String image="";
 
-    private String image;
     private String title;
     private String category;
     private String description;

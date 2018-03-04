@@ -49,7 +49,7 @@ public class HomeController {
             if (item.getCategory().equalsIgnoreCase("Pets"))
                 item.setImage("https://static.pexels.com/photos/59523/pexels-photo-59523.jpeg");
             else if (item.getCategory().equalsIgnoreCase("Cloth"))
-                item.setImage("https://www.homeleisuredirect.com/Assets/HLD/User/13_Cloth%20Options.jpg");
+                item.setImage("https://images.unsplash.com/photo-1457545195570-67f207084966?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a87ee980e1c3c754f0cb0e929d9c3081&auto=format&fit=crop&w=700&q=60");
             else
                 item.setImage("https://pisces.bbystatic.com/image2/BestBuy_US/store/ee/2017/mob/flx/flx_0329_sol12145-plus.jpg;maxHeight=333;maxWidth=333");
         }
@@ -188,6 +188,17 @@ public class HomeController {
 
         User selectedUser=userRepository.findByUserName(request.getParameter("username"));
         item.setAuser(selectedUser);
+
+        if(item .getImage().isEmpty()) {
+            if (item.getCategory().equalsIgnoreCase("Pets"))
+                item.setImage("https://static.pexels.com/photos/59523/pexels-photo-59523.jpeg");
+            else if (item.getCategory().equalsIgnoreCase("Cloth"))
+                item.setImage("https://images.unsplash.com/photo-1457545195570-67f207084966?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a87ee980e1c3c754f0cb0e929d9c3081&auto=format&fit=crop&w=700&q=60");
+            else
+                item.setImage("https://pisces.bbystatic.com/image2/BestBuy_US/store/ee/2017/mob/flx/flx_0329_sol12145-plus.jpg;maxHeight=333;maxWidth=333");
+        }
+
+
         itemRepository.save(item);
 
         model.addAttribute("item", itemRepository.findAll());
