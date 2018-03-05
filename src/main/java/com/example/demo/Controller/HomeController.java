@@ -51,7 +51,7 @@ public class HomeController {
             else if (item.getCategory().equalsIgnoreCase("Cloth"))
                 item.setImage("https://images.unsplash.com/photo-1457545195570-67f207084966?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a87ee980e1c3c754f0cb0e929d9c3081&auto=format&fit=crop&w=700&q=60");
             else
-                item.setImage("        https://image.shutterstock.com/display_pic_with_logo/3046616/673869010/stock-photo-lost-sign-on-a-lampost-in-a-suburban-street-vertical-wooden-label-on-a-tree-homemade-wooden-flier-673869010.jpg");
+                item.setImage("https://image.shutterstock.com/display_pic_with_logo/3046616/673869010/stock-photo-lost-sign-on-a-lampost-in-a-suburban-street-vertical-wooden-label-on-a-tree-homemade-wooden-flier-673869010.jpg");
         }
 
         https://image.shutterstock.com/display_pic_with_logo/3046616/673869010/stock-photo-lost-sign-on-a-lampost-in-a-suburban-street-vertical-wooden-label-on-a-tree-homemade-wooden-flier-673869010.jpg
@@ -179,11 +179,11 @@ public class HomeController {
 
         if(item .getImage().isEmpty()) {
             if (item.getCategory().equalsIgnoreCase("Pets"))
-                item.setImage("https://static.pexels.com/photos/59523/pexels-photo-59523.jpeg");
+                item.setImage("https://images.pexels.com/photos/460823/pexels-photo-460823.jpeg?h=350&dpr=2&auto=compress&cs=tinysrgb");
             else if (item.getCategory().equalsIgnoreCase("Cloth"))
                 item.setImage("https://images.unsplash.com/photo-1457545195570-67f207084966?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a87ee980e1c3c754f0cb0e929d9c3081&auto=format&fit=crop&w=700&q=60");
             else
-                item.setImage("https://pisces.bbystatic.com/image2/BestBuy_US/store/ee/2017/mob/flx/flx_0329_sol12145-plus.jpg;maxHeight=333;maxWidth=333");
+                item.setImage("https://image.shutterstock.com/display_pic_with_logo/3046616/673869010/stock-photo-lost-sign-on-a-lampost-in-a-suburban-street-vertical-wooden-label-on-a-tree-homemade-wooden-flier-673869010.jpg");
         }
 
 
