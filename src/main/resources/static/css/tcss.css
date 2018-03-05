@@ -8,12 +8,16 @@ body {
     text-rendering: optimizeLegibility;
 }
 
-div.table-title {
+div.table-title h3{
+
+    text-transform: none;
+    color: black;
     display: block;
-    margin: auto;
+    margin: fill;
     max-width: 600px;
     padding:5px;
     width: 100%;
+    text-align: left;
 }
 
 .table-title h3 {

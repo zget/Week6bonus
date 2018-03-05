@@ -47,19 +47,19 @@ public class HomeController {
         userRepository.save(currentuser);
         if(item .getImage().isEmpty()) {
             if (item.getCategory().equalsIgnoreCase("Pets"))
-                item.setImage("https://static.pexels.com/photos/59523/pexels-photo-59523.jpeg");
+                item.setImage("https://images.pexels.com/photos/460823/pexels-photo-460823.jpeg?h=350&dpr=2&auto=compress&cs=tinysrgb");
             else if (item.getCategory().equalsIgnoreCase("Cloth"))
                 item.setImage("https://images.unsplash.com/photo-1457545195570-67f207084966?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a87ee980e1c3c754f0cb0e929d9c3081&auto=format&fit=crop&w=700&q=60");
             else
-                item.setImage("https://pisces.bbystatic.com/image2/BestBuy_US/store/ee/2017/mob/flx/flx_0329_sol12145-plus.jpg;maxHeight=333;maxWidth=333");
+                item.setImage("        https://image.shutterstock.com/display_pic_with_logo/3046616/673869010/stock-photo-lost-sign-on-a-lampost-in-a-suburban-street-vertical-wooden-label-on-a-tree-homemade-wooden-flier-673869010.jpg");
         }
 
-
+        https://image.shutterstock.com/display_pic_with_logo/3046616/673869010/stock-photo-lost-sign-on-a-lampost-in-a-suburban-street-vertical-wooden-label-on-a-tree-homemade-wooden-flier-673869010.jpg
         item.setAuser(currentuser);
         itemRepository.save(item);
 
         model.addAttribute("item", itemRepository.findAll());
-        return "redirect:/home";
+        return "redirect:/list";
     }
 
 
@@ -103,7 +103,7 @@ public class HomeController {
     @RequestMapping("/home")
     public  String myHome(){
 
-        return "HOME";
+        return "redirect:/list";
     }
 
     @RequestMapping("/")
@@ -133,25 +133,13 @@ public class HomeController {
 
 
     @PostMapping("/register")
-    public String processUser(@Valid @ModelAttribute("user") User user, @RequestParam("selectedRole") String selectedRole, BindingResult result, Model model){
+    public String processUser(@Valid @ModelAttribute("user") User user,  BindingResult result, Model model){
         if(result.hasErrors()){
             return "Registration";
         }
-        System.out.println(selectedRole);
 
-        switch (selectedRole)
-        {
-            case "ADMIN":
-                user.addRole(roleRepository.findByRolename("ADMIN"));
-
-            case "USER":
-                user.addRole(roleRepository.findByRolename("USER"));
-
-
-        }
-
+        user.addRole(roleRepository.findByRolename("USER"));
         userRepository.save(user);
-        //  userService.saveUser(user);
         model.addAttribute("message", "User account Successfully Created");
         return "redirect:/login";
     }
@@ -214,7 +202,7 @@ public class HomeController {
     @PostMapping("/searchitem")
     public String showSearchResults(HttpServletRequest request, Model model){
         String query = request.getParameter("search");
-        model.addAttribute("search", query);
+//        model.addAttribute("search", query);
         model.addAttribute("searchitems", itemRepository.findByCategoryContainingIgnoreCase(query));
         return "Searchresult";
     }

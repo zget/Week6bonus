@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
@@ -25,9 +26,11 @@
         <li><a href="/login">Login</a></li>
         <li><a href="/register">SignUp</a></li>
         <li><a href="/logout">logout</a></li>
-        <li><a href="/postforregistereduser">post for</a></li>
-        <li><form th:action="@{/searchitem}" th:object="${item}" method="post">
-            <input type="search" name="search" placeholder="search by category..."/>
+        <th:block sec:authorize="hasAuthority('ADMIN')">
+        <li><a href="/postforregistereduser">Post for users</a></li>
+        </th:block>
+        <li class="searchForm"><form class="searchForm" th:action="@{/searchitem}" th:object="${item}" method="post">
+            <input  class="search" type="search" name="search" placeholder="search by category..."/>
         </form>
         </li>
         <li>

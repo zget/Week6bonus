@@ -36,7 +36,8 @@ public class SecurityConfigeration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/list","/","/login","/h2-console/**",
                        "/static/css/hcss.css","/css**","/js**","/static/css/tcss.css",
                         "/register","/home","/login","/css/hcss.css","/css/tcss.css"
-                ,"/css/sercss.css","/../static/css/sercss.css","/searchitem").permitAll()
+                ,"/css/sercss.css","/../static/css/sercss.css","/searchitem","/css/regcss.css",
+                        "/static/css/regcss.css").permitAll()
                 .antMatchers("/itemform","/listmy")
                 .access("hasAnyAuthority('USER', 'ADMIN')")
                 .antMatchers("/update/item/{id}","/postforregistereduser")
@@ -50,7 +51,7 @@ public class SecurityConfigeration extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .logout().logoutRequestMatcher(
-                        new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll()
+                        new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/list").permitAll()
 //                .logout().permitAll()
                 .and()
                 .exceptionHandling().accessDeniedPage("/access-denied")

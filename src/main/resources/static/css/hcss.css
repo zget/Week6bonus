@@ -3,19 +3,22 @@ body * {
     box-sizing: border-box;
     font-family: 'Titillium Web', sans-serif;
     -webkit-font-smoothing: antialiased;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.0);
 }
 
 body {
-    background: -webkit-linear-gradient(rgba(246, 247, 249, 0.8), rgba(246, 247, 249, 0.8)), url(https://upload.wikimedia.org/wikipedia/commons/8/8c/K2,_Mount_Godwin_Austen,_Chogori,_Savage_Mountain.jpg) no-repeat center center fixed;
-    background:  url(https://upload.wikimedia.org/wikipedia/commons/8/8c/K2,_Mount_Godwin_Austen,_Chogori,_Savage_Mountain.jpg) no-repeat center center fixed;
-    background-size: cover;
+    font-size: 1.15rem;
+    font-weight: 500;
+    line-height:2.3;
+    background: -webkit-linear-gradient(rgba(246, 247, 249, 0.8), rgba(249, 6, 37, 0)), url(https://upload.wikimedia.org/wikipedia/commons/8/8c/K2,_Mount_Godwin_Austen,_Chogori,_Savage_Mountain.jpg) no-repeat center center fixed;
+    /*background:  url(https://upload.wikimedia.org/wikipedia/commons/8/8c/K2,_Mount_Godwin_Austen,_Chogori,_Savage_Mountain.jpg) no-repeat center center fixed;*/
+    /*background-size: cover;*/
 }
 
 nav {
     width: 100%;
-    height: 48px;
-    background: -webkit-linear-gradient(rgba(35, 43, 85, 0.35), rgba(35, 43, 85, 0.55));
+    height: 58px;
+    background: -webkit-linear-gradient(rgba(35, 43, 85, 0.35), rgba(12, 85, 4, 0.55));
     background: linear-gradient( rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.55));
     margin-left: auto;
     margin-right: auto;
@@ -23,7 +26,8 @@ nav {
 }
 
 nav {
-    text-align: center;
+
+    text-align: left;
 }
 
 nav ul li:hover > ul {
@@ -49,8 +53,9 @@ nav ul:after {
 }
 
 nav ul li {
+
     float: left;
-    height: 48px;
+    height: 58px;
     line-height: 48px;
     transition: background 0.3s ease;
 }
@@ -59,15 +64,14 @@ nav ul li:hover {
     background: rgba(0, 0, 0, 0.3);
 }
 
-nav ul li:hover > a {
-    color: #fff;
+nav ul li:hover  a {
+    color: #1629ff;
 }
-
 nav ul li a {
     display: block;
-    padding: 0 40px;
-    color: #919191;
-    text-decoration: none;
+    padding: 0 20px;
+    /*color: #919191;*/
+    /*text-decoration: none;*/
 }
 
 nav ul ul {
@@ -78,7 +82,7 @@ nav ul ul {
     transition: opacity 0.3s ease;
 
     background: -webkit-linear-gradient(rgba(35, 43, 85, 0.35), rgba(35, 43, 85, 0.55));
-    background: linear-gradient( rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.55));
+    background: linear-gradient( rgba(7, 18, 255, 0.35), rgba(249, 8, 18, 1));
     border-radius: 0px;
     padding: 0;
     position: absolute;
@@ -93,7 +97,7 @@ nav ul ul li {
 }
 
 nav ul ul li a {
-    padding: 0 40px;
+    padding: 0 20px;
     color: #919191;
     transition: all .5s ease;
     white-space: nowrap;
@@ -245,4 +249,24 @@ nav ul ul ul {
     100% {
         margin-top: 0;
     }
+}
+.search{
+
+    width: 300px;
+    height: 45px;
+    background: #d7d4d6;
+    border: none;
+    font-size: 10pt;
+    float: left;
+    color: #101a7f;
+    padding-left: 45px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 1px;
+
+}
+.searchForm{
+    align-content: right;
+
+    right: 20px;
 }

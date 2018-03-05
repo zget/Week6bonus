@@ -54,13 +54,13 @@ public class DataLoader implements CommandLineRunner {
         item.setAuser(user1);
         itemRepository.save(item);
 
-        user1= new User("d@d.com", "password", "rekik",
-                "haile",true, "Rekik");
+        user1= new User("d@d.com", "password", "Rekik",
+                "haile",true, "rekik");
         myRole= roleRepository.findByRolename("USER");
         user1.addRole(myRole);
         userRepository.save(user1);
 
-        item=new Item("https://image.shutterstock.com/display_pic_with_logo/3046616/673869010/stock-photo-lost-sign-on-a-lampost-in-a-suburban-street-vertical-wooden-label-on-a-tree-homemade-wooden-flier-673869010.jpg",
+        item=new Item("https://pisces.bbystatic.com/image2/BestBuy_US/store/ee/2017/mob/flx/flx_0329_sol12145-plus.jpg;maxHeight=333;maxWidth=333",
                 "lost item","others","was not seen...");
         itemRepository.save(item);
         item.setAuser(user1);

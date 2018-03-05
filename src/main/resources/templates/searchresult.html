@@ -24,7 +24,7 @@
 <div th:replace="HOME :: mynav"></div>
 
 <div class="table-title">
-    <h3>Data Table</h3>
+    <h3>Lost Items</h3>
 </div>
 <table class="table-fill">
     <thead>
@@ -42,7 +42,7 @@
     </thead>
     <tbody class="table-hover">
     <tr th:inline="text" th:each="item : ${searchitems}">
-        <td class="text-left"> <img th:src="${item.image}" width="150" height="150"/></td>
+        <td class="text-left"> <img th:src="${item.image}" width="80" height="80"/></td>
         <td class="text-left">[[${item.title}]]</td>
         <td class="text-left">[[${item.category}]]</td>
         <td class="text-left">[[${item.description}]]</td>
