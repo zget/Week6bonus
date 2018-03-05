@@ -35,10 +35,9 @@
         <th class="text-left">Description</th>
         <th class="text-left">Owner</th>
         <th class="text-left">Status</th>
-
+        <th class="text-left">Edit Item</th>
         <th:block sec:authorize="hasAuthority('ADMIN')">
-            <th class="text-left">Edit Item</th>
-        <th class="text-left">Edit Status</th>
+            <th class="text-left">Edit Status</th>
         </th:block>
     </tr>
     </thead>
@@ -50,9 +49,8 @@
         <td class="text-left">[[${item.description}]]</td>
         <td class="text-left">[[${item.auser.getFirstName()}]]</td>
         <td class="text-left">[[${item.getStatus()}]]</td>
-
+        <td class="text-left"><a th:href="@{/edit/item/{id}(id=${item.id})}">edit Item</a></td>
         <th:block sec:authorize="hasAuthority('ADMIN')">
-            <td class="text-left"><a th:href="@{/edit/item/{id}(id=${item.id})}">edit Item</a></td>
             <td class="text-left"><a th:href="@{/update/item/{id}(id=${item.id})}">edit status</a></td>
         </th:block>
 

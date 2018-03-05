@@ -35,13 +35,12 @@ public class SecurityConfigeration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/list","/","/login","/h2-console/**",
                        "/static/css/hcss.css","/css**","/js**","/static/css/tcss.css",
-                        "/register","/home","/login","/css/hcss.css","/css/tcss.css"
+                        "/register","/home","/login","/css/hcss.css","/css/tcss.css" ,"/../static/css/sercss.css","/static/css/sercss.css"
                 ,"/css/sercss.css","/../static/css/sercss.css","/searchitem","/css/regcss.css",
-                        "/static/css/regcss.css").permitAll()
-                .antMatchers("/itemform","/listmy")
-                .access("hasAnyAuthority('USER', 'ADMIN')")
-                .antMatchers("/update/item/{id}","/postforregistereduser")
-                .access("hasAuthority('ADMIN') ")
+                        "/static/css/regcss.css","/static/images/**","/templates/images/**","/images/**",
+                        "/petList","/clothList","/othersList","/../static/css/regcss.css","/css/regcss.css").permitAll()
+                .antMatchers("/itemform","/listmy").access("hasAnyAuthority('USER', 'ADMIN')")
+                .antMatchers("/update/item/{id}","/postforregistereduser").access("hasAuthority('ADMIN') ")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -51,7 +50,7 @@ public class SecurityConfigeration extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .logout().logoutRequestMatcher(
-                        new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/list").permitAll()
+                        new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/home").permitAll()
 //                .logout().permitAll()
                 .and()
                 .exceptionHandling().accessDeniedPage("/access-denied")

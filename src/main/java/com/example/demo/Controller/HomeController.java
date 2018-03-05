@@ -7,6 +7,7 @@ import com.example.demo.Repositories.ItemRepository;
 import com.example.demo.Repositories.RoleRepository;
 import com.example.demo.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -98,18 +99,18 @@ public class HomeController {
 
         model.addAttribute("items", myitems);
 
-        return "listall";
+        return "mylist";
     }
     @RequestMapping("/home")
     public  String myHome(){
 
-        return "redirect:/list";
+        return "HOME";
     }
 
     @RequestMapping("/")
     public  String listPage(){
 
-        return "redirect:/list";
+        return "HOME";
     }
 
 
@@ -158,6 +159,18 @@ public class HomeController {
 
     }
 
+    @RequestMapping("/edit/item/{id}")
+    public String editItem(@PathVariable("id") long id, Model model){
+
+        Item myitem=itemRepository.findOne(id);
+        model.addAttribute("item",myitem);
+        return "itemform";
+
+    }
+
+
+
+
     @GetMapping("/postforregistereduser")
     public String postForregisteredUser(Model model){
 
@@ -175,6 +188,7 @@ public class HomeController {
 
 
         User selectedUser=userRepository.findByUserName(request.getParameter("username"));
+
         item.setAuser(selectedUser);
 
         if(item .getImage().isEmpty()) {
@@ -193,18 +207,56 @@ public class HomeController {
         return "redirect:/home";
     }
 
-    @RequestMapping("/postforregistereduser")
-    public String test(HttpServletRequest request){
-        System.out.println(request.getParameter("username"));
-        return "how r u";
-    }
+//    @RequestMapping("/postforregistereduser")
+//    public String test(HttpServletRequest request){
+//        System.out.println(request.getParameter("username"));
+//        return "how r u";
+//    }
 
     @PostMapping("/searchitem")
     public String showSearchResults(HttpServletRequest request, Model model){
         String query = request.getParameter("search");
 //        model.addAttribute("search", query);
         model.addAttribute("searchitems", itemRepository.findByCategoryContainingIgnoreCase(query));
-        return "Searchresult";
+        return "searchresult";
+    }
+
+//    @RequestMapping("/listbycat")
+//    public String listByCategory(Model model){
+//        Iterable<Item> items= itemRepository.findAll();
+//        Collection<Item> petcoll= new HashSet<>();
+//        Collection<Item> clothcoll= new HashSet<>();
+//        Collection<Item> othercoll= new HashSet<>();
+//        for(Item item:items)
+//        if(item.getCategory().equalsIgnoreCase("Pets"))
+//            petcoll.add(item);
+//        else if(item.getCategory().equalsIgnoreCase("Cloth"))
+//            clothcoll.add(item);
+//        else
+//            othercoll.add(item);
+//
+//        return "redirect:/list";
+//    }
+
+    @RequestMapping("/petList")
+    public String petList(Model model){
+
+        model.addAttribute("items", itemRepository.findByCategory("Pets"));
+        return "listall";
+    }
+
+    @RequestMapping("/clothList")
+    public String clothList(Model model){
+
+        model.addAttribute("items", itemRepository.findByCategory("Cloth"));
+        return "listall";
+    }
+
+    @RequestMapping("/othersList")
+    public String othersList(Model model){
+
+        model.addAttribute("items", itemRepository.findByCategory("Others"));
+        return "listall";
     }
 
 }

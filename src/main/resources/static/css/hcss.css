@@ -129,7 +129,7 @@ nav ul ul ul {
     line-height: 64px;
 }
 .welcome:after {
-    content: ']';
+    /*content: ']';*/
     position: absolute;
     right: -30px;
     line-height: 64px;
